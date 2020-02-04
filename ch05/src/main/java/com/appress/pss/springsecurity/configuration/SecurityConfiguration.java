@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -31,13 +32,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public AuthenticationFailureHandler customAuthenticationFailureHandler() {
+        return new CustomAuthenticationFailureHandler();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
                 .antMatchers("/", "/index", "/login").permitAll()
                 .antMatchers("/**").hasRole("ADMIN")
-                .and().formLogin().loginPage("/login").permitAll()
+                .and().formLogin().loginPage("/login").permitAll().failureHandler(new CustomAuthenticationFailureHandler())
                 .and().logout().logoutSuccessUrl("/index").permitAll()
                 .and().csrf().disable();
     }
