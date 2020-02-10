@@ -28,8 +28,8 @@ public class UserController {
         return "movie x";
     }
 
-    @GetMapping("login")
-    public String loginPage() {
-        return "login";
-    }
+    // @GetMapping("login")
+    // public String loginPage() {
+    //     return "login";
+    // }
 }
