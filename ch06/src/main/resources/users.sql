@@ -1,0 +1,5 @@
+INSERT INTO USERS
+VALUES ('mnardone', 'nardone', true);
+INSERT INTO AUTHORITIES
+VALUES ('mnardone', 'ROLE_NARDONE_MEMBER');
+COMMIT;

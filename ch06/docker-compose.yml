@@ -1,0 +1,12 @@
+# база данных:
+# jdbc:hsqldb:file:ch06
+version: '3'
+services:
+  hsqldb:
+    image: datagrip/hsqldb:2.3.4
+    container_name: hsqldb
+    restart: on-failure
+    ports:
+      - 9001:9001
+    environment:
+      HSQLDB_DATABASE_NAME: ch06

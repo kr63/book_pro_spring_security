@@ -13,12 +13,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <springframework.version>5.1.5.RELEASE</springframework.version>
-        <com.appress.pss.springsecurity.version>5.1.5.RELEASE</com.appress.pss.springsecurity.version>
+        <springsecurity.version>5.1.5.RELEASE</springsecurity.version>
     </properties>
 
     <modules>
         <module>ch03</module>
         <module>ch05</module>
+        <module>ch06</module>
     </modules>
 
     <dependencies>
@@ -31,19 +32,19 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>${com.appress.pss.springsecurity.version}</version>
+            <version>${springsecurity.version}</version>
         </dependency>
 
         <!-- Spring Security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>${com.appress.pss.springsecurity.version}</version>
+            <version>${springsecurity.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>${com.appress.pss.springsecurity.version}</version>
+            <version>${springsecurity.version}</version>
         </dependency>
 
         <dependency>
