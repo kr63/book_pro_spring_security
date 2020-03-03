@@ -26,6 +26,7 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
+            SecurityContextHolder.clearContext();
         }
         return "login";
     }

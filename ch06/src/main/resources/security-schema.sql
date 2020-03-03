@@ -1,32 +1,13 @@
-CREATE TABLE USERS
+create table people
 (
-    USERNAME VARCHAR_IGNORECASE(50) NOT NULL PRIMARY KEY,
-    PASSWORD VARCHAR_IGNORECASE(50) NOT NULL,
-    ENABLED  BOOLEAN                NOT NULL
+    name varchar_ignorecase(50) not null primary key,
+    key  varchar_ignorecase(50)
 );
+create table roles
+(
+    name varchar_ignorecase(50) not null primary key,
+    role varchar_ignorecase(50) not null,
+    constraint fk_authorities_users foreign key (name) references people (name)
+);
+commit
 
-CREATE TABLE AUTHORITIES
-(
-    USERNAME  VARCHAR_IGNORECASE(50) NOT NULL PRIMARY KEY,
-    AUTHORITY VARCHAR_IGNORECASE(50) NOT NULL,
-    CONSTRAINT FK_AUTHORITIES_USERS
-        FOREIGN KEY (USERNAME) REFERENCES USERS (USERNAME)
-);
-
-CREATE TABLE GROUPS
-(
-    id         BIGINT                 NOT NULL PRIMARY KEY,
-    GROUP_NAME VARCHAR_IGNORECASE(50) NOT NULL
-);
-
-CREATE TABLE GROUP_MEMBERS
-(
-    group_id BIGINT                 NOT NULL,
-    username VARCHAR_IGNORECASE(50) NOT NULL
-);
-
-CREATE TABLE GROUP_AUTHORITIES
-(
-    group_id  BIGINT                 NOT NULL,
-    authority VARCHAR_IGNORECASE(50) NOT NULL
-);
