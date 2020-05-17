@@ -38,7 +38,7 @@ public class ForumController {
     }
 
     private ModelAndView showForm() {
-        Map<String, Object> model = new HashMap<String, Object>();
+        Map<String, Object> model = new HashMap<>();
         model.put("posts", forumService.getPosts());
         return new ModelAndView("posts", model);
     }
@@ -61,7 +61,7 @@ public class ForumController {
     }
 
     private String getPrincipal() {
-        String userName = null;
+        String userName;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {

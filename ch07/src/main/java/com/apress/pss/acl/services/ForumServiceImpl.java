@@ -25,7 +25,7 @@ import java.util.Map;
 @Service
 public class ForumServiceImpl implements ForumService {
 
-    private final Map<Integer, Post> postStore = new HashMap<Integer, Post>();
+    private final Map<Integer, Post> postStore = new HashMap<>();
     @Autowired
     private MutableAclService mutableAclService;
 
@@ -41,17 +41,21 @@ public class ForumServiceImpl implements ForumService {
         modelAndView.addObject("role", user.getAuthorities());
         modelAndView.addObject("adminMessage", "Content Available only for Authenticated Admins!");
 
+        // administration --> creator of the Post
+        acl.insertAce(0, BasePermission.ADMINISTRATION,
+                new PrincipalSid(user.getUsername()), true);
 
-        acl.insertAce(0, BasePermission.ADMINISTRATION, new PrincipalSid(
-                user.getUsername()), true);
-        acl.insertAce(1, BasePermission.DELETE, new GrantedAuthoritySid(
-                "ROLE_ADMIN"), true);
+        // delete --> any ROLE_ADMIN
+        acl.insertAce(1, BasePermission.DELETE,
+                new GrantedAuthoritySid("ROLE_ADMIN"), true);
+
+        // read --> any ROLE_USER
         if (isAdminUserLogged()) {
-            acl.insertAce(2, BasePermission.READ, new GrantedAuthoritySid(
-                    "ROLE_ADMIN"), true);
+            acl.insertAce(2, BasePermission.READ,
+                    new GrantedAuthoritySid("ROLE_ADMIN"), true);
         } else {
-            acl.insertAce(2, BasePermission.READ, new GrantedAuthoritySid(
-                    "ROLE_USER"), true);
+            acl.insertAce(2, BasePermission.READ,
+                    new GrantedAuthoritySid("ROLE_USER"), true);
         }
         mutableAclService.updateAcl(acl);
         post.setId(id);
@@ -69,7 +73,7 @@ public class ForumServiceImpl implements ForumService {
 
     //@PostFilter("hasPermission(filterObject, 'READ')")
     public Collection<Post> getPosts() {
-        return new ArrayList<Post>(postStore.values());
+        return new ArrayList<>(postStore.values());
     }
 
     public void setMutableAclService(MutableAclService mutableAclService) {
