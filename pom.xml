@@ -20,6 +20,7 @@
         <module>ch03</module>
         <module>ch05</module>
         <module>ch06</module>
+        <module>ch07</module>
     </modules>
 
     <dependencies>
