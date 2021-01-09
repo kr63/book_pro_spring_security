@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/forum")
 public class ForumController {
 
     @Autowired

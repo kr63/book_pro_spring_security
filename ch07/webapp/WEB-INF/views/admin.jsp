@@ -1,12 +1,11 @@
 <%@ page contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+         pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="security"
-           uri="http://www.springframework.org/security/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+           uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html>
 
 <head>
     <title>Spring Security 5 and ACL.</title>
@@ -16,10 +15,9 @@
 <h2>You are succesfully logged as Admin!</h2>
 
 <br/>
-<p>Click <a href="/forum/posts">here</a> to manage your posts.</p>
+<p>Click <a href="/posts">here</a> to manage your posts.</p>
 
-</br>
-<form action="/logout" method="post">
+<form action="${pageContext.request.contextPath}/logout" method="post">
     <input type="submit" value="Sign Out"/>
 </form>
 
